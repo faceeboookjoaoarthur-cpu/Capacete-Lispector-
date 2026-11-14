@@ -1,324 +1,546 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Capacete Lispector</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capacete Lispector</title>
+  <meta name="description" content="Site pessoal do universo de Capacete Lispector: cartomancia, cinema, séries, livros e arte." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+    :root {
+      --bg: #0d0d0f;
+      --bg-soft: #15151a;
+      --panel: #191920;
+      --panel-2: #1d1d29;
+      --border: rgba(255,255,255,0.08);
+      --text: #f3f0f7;
+      --muted: #b7afc8;
+      --accent: #c8b2e8;
+      --accent-strong: #8d6fc8;
+      --shadow: rgba(0, 0, 0, 0.38);
+    }
 
-:root {
-  --bg: #101010;
-  --card: #191919;
-  --border: #292929;
-  --text: #ededed;
-  --muted: #929292;
-  --accent: #b6a3cf;
-}
+    * { box-sizing: border-box; }
 
-* { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top, rgba(141,111,200,0.18), transparent 22%),
+        linear-gradient(180deg, #0d0d0f 0%, #101014 100%);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
 
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-header {
-  height: 75px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 7%;
-  position: sticky;
-  top: 0;
-  background: #101010ee;
-  backdrop-filter: blur(12px);
-  z-index: 10;
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-.logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 19px;
-}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: rgba(13, 13, 15, 0.8);
+      border-bottom: 1px solid var(--border);
+    }
 
-nav {
-  display: flex;
-  gap: 23px;
-}
+    .nav-wrap {
+      width: min(1120px, 90vw);
+      margin: 0 auto;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
 
-nav a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 13px;
-}
+    .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 2vw, 2.4rem);
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
 
-nav a:hover { color: white; }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
 
-main {
-  width: 88%;
-  max-width: 1050px;
-  margin: auto;
-}
+    nav a {
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
 
-.hero {
-  padding: 110px 0 95px;
-  text-align: center;
-}
+    nav a:hover {
+      color: var(--text);
+    }
 
-.eyebrow {
-  color: var(--accent);
-  letter-spacing: 4px;
-  font-size: 10px;
-}
+    main {
+      width: min(1120px, 90vw);
+      margin: 0 auto;
+    }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(42px, 8vw, 78px);
-  font-weight: 500;
-  margin: 25px 0 15px;
-}
+    .hero {
+      padding: 100px 0 72px;
+      text-align: center;
+    }
 
-.hero p {
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.8;
-}
+    .eyebrow {
+      color: var(--accent);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
 
-.quote {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 19px !important;
-  margin-top: 28px;
-}
+    h1 {
+      margin: 20px 0 14px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(4rem, 7vw, 8rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
 
-.button {
-  display: inline-block;
-  border: 1px solid #494052;
-  padding: 12px 22px;
-  margin: 15px 5px;
-  color: var(--text);
-  text-decoration: none;
-  font-size: 12px;
-  border-radius: 4px;
-  transition: .2s;
-}
+    .hero-copy {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
 
-.button:hover {
-  background: var(--accent);
-  color: #101010;
-}
+    .quote {
+      margin: 30px auto 16px;
+      max-width: 760px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      line-height: 1.2;
+      color: var(--text);
+      font-style: italic;
+    }
 
-section {
-  padding: 65px 0;
-  border-top: 1px solid var(--border);
-  scroll-margin-top: 75px;
-}
+    .cta-row {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
 
-.section-label {
-  color: var(--accent);
-  font-size: 10px;
-  letter-spacing: 3px;
-}
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
 
-h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 34px;
-  font-weight: 500;
-  margin: 12px 0 28px;
-}
+    .button:hover {
+      transform: translateY(-2px);
+    }
 
-.description {
-  max-width: 650px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.9;
-}
+    .button.primary {
+      background: linear-gradient(135deg, var(--accent) 0%, #9077c7 100%);
+      color: #0e0d12;
+      border-color: transparent;
+      font-weight: 700;
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
+    .button.secondary {
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+    }
 
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  padding: 25px;
-  transition: .25s;
-}
+    section {
+      padding: 78px 0;
+      border-top: 1px solid var(--border);
+      scroll-margin-top: 90px;
+    }
 
-.card:hover {
-  border-color: var(--accent);
-  transform: translateY(-3px);
-}
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
 
-.card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 21px;
-  font-weight: 500;
-}
+    .section-kicker {
+      color: var(--accent);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
 
-.card p {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
-}
+    h2 {
+      margin: 12px 0 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 4.4vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+    }
 
-.tag {
-  color: var(--accent);
-  font-size: 10px;
-  letter-spacing: 2px;
-}
+    .section-body {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 690px;
+    }
 
-footer {
-  border-top: 1px solid var(--border);
-  padding: 35px 10px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 11px;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+    }
 
-@media(max-width:650px) {
-  header {
-    padding: 0 5%;
-    height: auto;
-    min-height: 70px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px 22px 18px;
+      box-shadow: 0 16px 40px var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
 
-  nav {
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 14px;
-    gap: 18px;
-  }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(200,178,232,0.7);
+    }
 
-  nav a { white-space: nowrap; }
+    .tag {
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
 
-  .hero { padding: 85px 0; }
+    .card h3 {
+      margin: 18px 0 10px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.05rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+    }
 
-  .grid { grid-template-columns: 1fr; }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
 
-  main { width: 90%; }
-}
-</style>
+    .feature-box {
+      margin-top: 28px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+    }
+
+    .feature-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .meta-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .meta-list li {
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.01);
+      color: var(--text);
+    }
+
+    footer {
+      padding: 48px 0 60px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .feature-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-wrap {
+        height: auto;
+        padding: 16px 0;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 12px 18px;
+      }
+
+      nav a {
+        font-size: 0.68rem;
+      }
+
+      .hero {
+        padding-top: 90px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
-<header>
-  <div class="logo">capacete lispector.</div>
-  <nav>
-    <a href="#inicio">Início</a>
-    <a href="#cartomancia">Cartomancia</a>
-    <a href="#filmes">Filmes</a>
-    <a href="#series">Séries</a>
-    <a href="#livros">Livros</a>
-    <a href="#artistas">Artistas</a>
-  </nav>
-</header>
-
-<main>
-
-<div class="hero" id="inicio">
-  <div class="eyebrow">UM UNIVERSO PARTICULAR</div>
-  <h1>Capacete Lispector</h1>
-  <p>Entre cartas, livros e outras formas de existir.</p>
-  <p class="quote">
-    "Liberdade é pouco. O que eu desejo ainda não tem nome."
-  </p>
-  <a href="#sobre" class="button">Conheça-me</a>
-  <a href="#cartomancia" class="button">Cartomancia</a>
-</div>
-
-<section id="sobre">
-  <div class="section-label">01 / SOBRE</div>
-  <h2>Um pouco sobre mim.</h2>
-  <p class="description">
-    Bem-vindo ao meu pequeno universo.
-    Este espaço reúne algumas das coisas que fazem
-    parte de mim: meus interesses, minhas referências,
-    minhas leituras e tudo aquilo que desperta minha curiosidade.
-  </p>
-</section>
-
-<section id="cartomancia">
-  <div class="section-label">02 / CARTOMANCIA</div>
-  <h2>Entre cartas e símbolos.</h2>
-  <p class="description">
-    Um espaço dedicado aos meus estudos de cartomancia,
-    aos arquétipos, aos símbolos e às diferentes formas
-    de interpretar as cartas.
-  </p>
-  <div class="grid">
-    <div class="card">
-      <span class="tag">ESTUDOS</span>
-      <h3>Tarot</h3>
-      <p>Arcanos, simbolismos e interpretações.</p>
+  <header>
+    <div class="nav-wrap">
+      <a href="#inicio" class="brand">capacete lispector.</a>
+      <nav>
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#cartomancia">Cartomancia</a>
+        <a href="#filmes">Filmes</a>
+        <a href="#series">Séries</a>
+        <a href="#livros">Livros</a>
+        <a href="#artistas">Artistas</a>
+      </nav>
     </div>
-    <div class="card">
-      <span class="tag">ESTUDOS</span>
-      <h3>Baralho Cigano</h3>
-      <p>As cartas, seus significados e combinações.</p>
-    </div>
-  </div>
-</section>
+  </header>
 
-<section id="filmes">
-  <div class="section-label">03 / CINEMA</div>
-  <h2>Filmes favoritos.</h2>
-  <p class="description">Histórias que gosto de assistir e revisitar.</p>
-  <div class="grid">
-    <div class="card"><h3>Filme favorito 01</h3><p>Adicionar descrição.</p></div>
-    <div class="card"><h3>Filme favorito 02</h3><p>Adicionar descrição.</p></div>
-  </div>
-</section>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="eyebrow">um universo particular</div>
+      <h1>Capacete Lispector</h1>
+      <p class="hero-copy">Entre cartas, imagens, palavras e qualquer coisa que me faça sentir mais viva.</p>
+      <p class="quote">“Liberdade é pouco. O que eu desejo ainda não tem nome.”</p>
+      <div class="cta-row">
+        <a class="button primary" href="#sobre">Conheça-me</a>
+        <a class="button secondary" href="#cartomancia">Cartomancia</a>
+      </div>
+    </section>
 
-<section id="series">
-  <div class="section-label">04 / TELEVISÃO</div>
-  <h2>Séries favoritas.</h2>
-  <div class="grid">
-    <div class="card"><h3>Série favorita 01</h3><p>Adicionar descrição.</p></div>
-    <div class="card"><h3>Série favorita 02</h3><p>Adicionar descrição.</p></div>
-  </div>
-</section>
+    <section id="sobre">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">01 / sobre</div>
+          <h2>Um pouco sobre mim.</h2>
+        </div>
+      </div>
+      <div class="feature-box">
+        <p>
+          Bem-vindo ao meu espaço. Aqui se encontram as coisas que me acompanham: leituras, imagens,
+          símbolos, músicas e histórias que me inspiram a enxergar o mundo de outra forma. Este site é um
+          pequeno arquivo do que me compõe: um lugar de curiosidade, observação e intensidade.
+        </p>
+        <ul class="meta-list">
+          <li>Cartomancia e simbologia</li>
+          <li>Cinema, séries e literatura</li>
+          <li>Arte, estética e reflexão</li>
+        </ul>
+      </div>
+    </section>
 
-<section id="livros">
-  <div class="section-label">05 / LITERATURA</div>
-  <h2>Minha biblioteca.</h2>
-  <p class="description">Livros, autores e palavras que permanecem.</p>
-  <div class="grid">
-    <div class="card"><h3>Livro favorito 01</h3><p>Adicionar autor.</p></div>
-    <div class="card"><h3>Livro favorito 02</h3><p>Adicionar autor.</p></div>
-  </div>
-</section>
+    <section id="cartomancia">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">02 / cartomancia</div>
+          <h2>Entre cartas e significados.</h2>
+        </div>
+      </div>
+      <p class="section-body">
+        O estudo dos símbolos me acompanha como um mapa de consulta interior. As cartas ajudam a criar
+        sentido a partir do que já existe em mim, mesmo antes de eu saber como nomear.
+      </p>
 
-<section id="artistas">
-  <div class="section-label">06 / MÚSICA E ARTE</div>
-  <h2>Artistas que admiro.</h2>
-  <div class="grid">
-    <div class="card"><h3>Artista 01</h3><p>Adicionar descrição.</p></div>
-    <div class="card"><h3>Artista 02</h3><p>Adicionar descrição.</p></div>
-  </div>
-</section>
+      <div class="grid">
+        <article class="card">
+          <div class="tag">estudos</div>
+          <h3>Tarot</h3>
+          <p>Arcanos, arquétipos e interpretações que falam em imagens, silêncio e ciclos.</p>
+        </article>
 
-</main>
+        <article class="card">
+          <div class="tag">estudos</div>
+          <h3>Baralho Cigano</h3>
+          <p>Cartas de presença, relação, caminho e decisão. Cada combinação conta outra história.</p>
+        </article>
 
-<footer>
-  CAPACETE LISPECTOR · 2026
-  <br><br>
-  Um pequeno universo na internet.
-</footer>
+        <article class="card">
+          <div class="tag">estudos</div>
+          <h3>Oráculos</h3>
+          <p>Mensagens sutis, linguagens sensíveis e uma forma de ouvir o que o momento quer dizer.</p>
+        </article>
+      </div>
+    </section>
 
+    <section id="filmes">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">03 / cinema</div>
+          <h2>Filmes que deixam rastros.</h2>
+        </div>
+      </div>
+      <p class="section-body">Histórias que eu revisito por estética, sentimento e forma de olhar o mundo.</p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="tag">cinema</div>
+          <h3>Mulholland Drive</h3>
+          <p>Uma obra que mistura desejo, sonho, dor e identidade em um mapa de imagens inquietantes.</p>
+        </article>
+
+        <article class="card">
+          <div class="tag">cinema</div>
+          <h3>Paris, Texas</h3>
+          <p>Silêncio, deslocamento e uma busca profunda por reconhecimento e conexão.</p>
+        </article>
+
+        <article class="card">
+          <div class="tag">cinema</div>
+          <h3>A Vida é Bela</h3>
+          <p>Uma das histórias mais delicadas sobre resistência, humor e ternura diante do absurdo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="series">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">04 / televisão</div>
+          <h2>Séries favoritas.</h2>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="tag">séries</div>
+          <h3>Fleabag</h3>
+          <p>Intimidade, humor ácido e uma forma brilhante de narrar vulnerabilidade.</p>
+        </article>
+
+        <article class="card">
+          <div class="tag">séries</div>
+          <h3>Sharp Objects</h3>
+          <p>Atmosfera intensa, memória inquietante e um olhar sombrio sobre culpa e trauma.</p>
+        </article>
+
+        <article class="card">
+          <div class="tag">séries</div>
+          <h3>True Detective</h3>
+          <p>Uma narrativa que mergulha em mistério, nihilismo e as ruínas da alma.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="livros">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">05 / literatura</div>
+          <h2>Minha biblioteca.</h2>
+        </div>
+      </div>
+      <p class="section-body">Livros, autores e frases que me acompanham e me ajudam a atravessar o mundo.</p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="tag">livro</div>
+          <h3>O Alquimista</h3>
+          <p>Paulo Coelho — um livro sobre desejo, destino e coragem de seguir o próprio caminho.</p>
+        </article>
+
+        <article class="card">
+          <div class="tag">livro</div>
+          <h3>As Fronteiras do Desejo</h3>
+          <p>Uma leitura que mistura desejo, subjetividade e a construção do eu.</p>
+        </article>
+
+        <article class="card">
+          <div class="tag">livro</div>
+          <h3>O Fauno da Midnight</h3>
+          <p>Uma obra que habita o limiar entre fantasia, melancolia e eros.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="artistas">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">06 / música e arte</div>
+          <h2>Artistas que admiro.</h2>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="tag">música</div>
+          <h3>FKA twigs</h3>
+          <p>Uma mistura de intensidade, vulnerabilidade e experimentação visual e sonora.</p>
+        </article>
+
+        <article class="card">
+          <div class="tag">música</div>
+          <h3>Conor Oberst</h3>
+          <p>Uma voz de estranheza e beleza, sempre muito delicada e muito humana.</p>
+        </article>
+
+        <article class="card">
+          <div class="tag">arte</div>
+          <h3>Frida Kahlo</h3>
+          <p>Uma presença que une dor, identidade, estética e força de existir.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Capacete Lispector · 2026
+  </footer>
 </body>
-    </html>
-
+</html>
